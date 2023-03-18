@@ -30,14 +30,13 @@ class Material {
         .where("id", materialId)
         .first();
 
-      if (!compositions.length) return material_table.power_level;
+      if (compositions.length <= 0) return material.power_level;
 
       let materialPowerLevel = material.power_level;
       for (let { material_id, qty } of compositions) {
-        const compositionPowerLevel = await this.getPowerLevel(material_id);
+        const compositionPowerLevel = await Material.getPowerLevel(material_id);
         materialPowerLevel += compositionPowerLevel * qty;
       }
-
       return materialPowerLevel;
     } catch (error) {
       throw new Error(error);
@@ -76,7 +75,7 @@ class Material {
       const compositions = await db(compositions_table).where("parent_id", id);
       const material = await db(material_table).where("id", id).first();
 
-      if (!compositions.length) return material.qty;
+      if (compositions.length <= 0) return material.qty;
 
       let compositionMaxQtys = material.qty;
       for (let { material_id, qty } of compositions) {

@@ -38,7 +38,7 @@ class Weapon {
       );
       let updatedWeapons = [];
       for (let { weapon_id } of relatedWeapons) {
-        const updatedPowerLevel = await this.getPowerLevel(weapon_id);
+        const updatedPowerLevel = await Weapon.getPowerLevel(weapon_id);
         const updatedWeapon = await db(weapons_table)
           .where("id", weapon_id)
           .update("power_level", updatedPowerLevel)
