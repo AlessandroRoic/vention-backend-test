@@ -4,7 +4,7 @@
   "description": "Take-home assessment for VOPS team.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "author": "Vention",
   "dependencies": {
@@ -13,5 +13,8 @@
     "express": "^4.17.2",
     "knex": "^0.95.15",
     "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
   }
 }
